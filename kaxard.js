@@ -1,6 +1,7 @@
 
-class Kaxard {
+class Kaxard  extends Living{
     constructor(x, y) {
+        super(x, y)
         this.x = x;
         this.y = y;
         this.directions = [];

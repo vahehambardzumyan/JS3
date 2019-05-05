@@ -1,4 +1,4 @@
-class Grass {
+class Living {
     constructor(x, y) {
         this.x = x;
         this.y = y;
@@ -33,20 +33,6 @@ class Grass {
             }
         }
         return found;
-    }
-
-    mul() {
-
-        var fundCords = this.getDirections(0);
-        var cord = random(fundCords);
-        if (cord) {
-            var x = cord[0];
-            var y = cord[1];
-            var norXot = new Grass(x, y);
-            xotArr.push(norXot);
-            matrix[y][x] = 1;
-
-        }
     }
 }
 
