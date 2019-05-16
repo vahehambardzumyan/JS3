@@ -41,7 +41,7 @@ class Gishatich  extends Living{
 
     move() {
         var fundCords = this.getDirections(0);
-        var cord = random(fundCords);
+        var cord = fundCords[Math.floor(Math.random()*fundCords.length)];
 
         if (cord) {
             var x = cord[0];
@@ -57,7 +57,7 @@ class Gishatich  extends Living{
 
     eat() {
         var fundCords = this.getDirections(2);
-        var cord = random(fundCords);
+        var cord = fundCords[Math.floor(Math.random()*fundCords.length)];
         if (cord) {
             var x = cord[0];
             var y = cord[1];
@@ -96,7 +96,7 @@ class Gishatich  extends Living{
 
     mul() {
         var fundCords = this.getDirections(0);
-        var cord = random(fundCords);
+        var cord = fundCords[Math.floor(Math.random()*fundCords.length)];
 
         if (cord) {
             var x = cord[0];

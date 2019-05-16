@@ -1,8 +1,9 @@
-class Grass extends Living {
+module.Living = require("./Living")
+module.exports = class Grass extends Living {
     constructor(x, y) {
         super(x, y)
-        this.x = x;
-        this.y = y;
+        // this.x = x;
+        // this.y = y;
         this.directions = [];
 
 
@@ -39,7 +40,7 @@ class Grass extends Living {
     mul() {
 
         var fundCords = this.getDirections(0);
-        var cord = random(fundCords);
+        var cord = fundCords[Math.floor(Math.random() * fundCords.length)];
         if (cord) {
             var x = cord[0];
             var y = cord[1];

@@ -40,7 +40,7 @@ class Eatgrass  extends Living{
 
     move() {
         var fundCords = this.getDirections(0);
-        var cord = random(fundCords);
+        var cord = fundCords[Math.floor(Math.random()*fundCords.length)];
 
         if (cord) {
             var x = cord[0];
@@ -98,7 +98,7 @@ class Eatgrass  extends Living{
 
     mul() {
         var fundCords = this.getDirections(0);
-        var cord = random(fundCords);
+        var cord = fundCords[Math.floor(Math.random()*fundCords.length)];
 
         if (cord) {
             var x = cord[0];

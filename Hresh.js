@@ -41,7 +41,7 @@ class Hresh extends Living {
 
     move() {
         var fundCords = this.getDirections(0);
-        var cord = random(fundCords);
+        var cord = fundCords[Math.floor(Math.random()*fundCords.length)];
 
         if (cord) {
             var x = cord[0];
@@ -60,7 +60,7 @@ class Hresh extends Living {
         var fundCords1 = this.getDirections(2);
         var fundCords2 = this.getDirections(3);
         let fundCords = fundCords1.concat(fundCords2);
-        var cord = random(fundCords);
+        var cord = fundCords[Math.floor(Math.random()*fundCords.length)];
         if (cord) {
             var x = cord[0];
             var y = cord[1];
@@ -110,7 +110,7 @@ class Hresh extends Living {
 
     mul() {
         var fundCords = this.getDirections(0);
-        var cord = random(fundCords);
+        var cord = fundCords[Math.floor(Math.random()*fundCords.length)];
 
         if (cord) {
             var x = cord[0];
