@@ -1,17 +1,17 @@
 var side = 15;
-
-
+var socket = io()
+socket.on("uxarkum em matrix nkari", drawMatrix);
 
 function setup() {
-    frameRate(8);
     createCanvas(50 * side, 50 * side);
     background('#acacac');
-
-    socket.io("uxarkum em matrix nkari ", drawMatrix);
-
 }
 
-function drawMatrix(matrix) {
+function drawMatrix(obj) {
+
+    matrix = obj.m
+    season = obj.s
+
     background('#acacac');
     for (var i = 0; i < matrix.length; i++) {
         for (var j = 0; j < matrix[i].length; j++) {
@@ -33,8 +33,10 @@ function drawMatrix(matrix) {
 
         }
     }
+}
 
-
+function spanel() {
+    socket.io("spani", 445695963)
 }
 
 

@@ -1,4 +1,5 @@
-class Gishatich  extends Living{
+var Living = require("./Living")
+module.exports = class Gishatich  extends Living{
     constructor(x, y) {
         super(x, y)
         this.x = x;

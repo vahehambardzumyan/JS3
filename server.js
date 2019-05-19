@@ -1,11 +1,16 @@
-var xotArr = [];
-var eatArr = [];
-var gishatichArr = [];
-var hreshArr = [];
-var kaxardArr = [];
+xotArr = [];
+eatArr = [];
+gishatichArr = [];
+hreshArr = [];
+kaxardArr = [];
+var Grass = require('./grass');
+var Kaxard = require('./kaxard');
+var Gishatich = require('./gishatich');
+var Eatgrass = require('./eatgrass');
+var Hresh = require('./Hresh');
 
 
-var matrix = []
+matrix = []
 for (y = 0; y < 50; y++) {
     matrix.push([])
     for (x = 0; x < 50; x++) {
@@ -38,44 +43,51 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 
-app.use(expres.static("."));
+app.use(express.static("."));
 app.get('/', function (req, res) {
     res.redict('index.html');
 });
 server.listen(3000);
 
-
-function setup() {
-    frameRate(8);
-    createCanvas(matrix[0].length * side, matrix.length * side);
-    background('#acacac');
-
-    function createObject() {
-        for (var y = 0; y < matrix.length; y++) {
-            for (var x = 0; x < matrix[y].length; x++) {
-                if (matrix[y][x] == 2) {
-                    var eatgrass = new Eatgrass(x, y);
-                    eatArr.push(eatgrass);
-                } else if (matrix[y][x] == 1) {
-                    var grass = new Grass(x, y);
-                    xotArr.push(grass);
-                } else if (matrix[y][x] == 3) {
-                    var gishatich = new Gishatich(x, y);
-                    gishatichArr.push(gishatich);
-                } else if (matrix[y][x] == 4) {
-                    var hresh = new Hresh(x, y);
-                    hreshArr.push(hresh);
-                } else if (matrix[y][x] == 5) {
-                    var kaxard = new Kaxard(x, y);
-                    kaxardArr.push(kaxard);
-                }
+function createObject() {
+    for (var y = 0; y < matrix.length; y++) {
+        for (var x = 0; x < matrix[y].length; x++) {
+            if (matrix[y][x] == 2) {
+                var eatgrass = new Eatgrass(x, y);
+                eatArr.push(eatgrass);
+            } else if (matrix[y][x] == 1) {
+                var grass = new Grass(x, y);
+                xotArr.push(grass);
+            } else if (matrix[y][x] == 3) {
+                var gishatich = new Gishatich(x, y);
+                gishatichArr.push(gishatich);
+            } else if (matrix[y][x] == 4) {
+                var hresh = new Hresh(x, y);
+                hreshArr.push(hresh);
+            } else if (matrix[y][x] == 5) {
+                var kaxard = new Kaxard(x, y);
+                kaxardArr.push(kaxard);
             }
         }
     }
 }
-createObject();
+createObject(matrix);
 
 function game() {
+    takt++
+    if(takt<=20){
+        eghanak ="amar"
+    }else if(takt<=40 ){
+        eghanak="dzmer"
+    }else {
+        takt=0
+    
+    
+    
+    
+    
+    
+    
     for (var u in xotArr) {
         xotArr[u].mul();
     }
@@ -95,9 +107,29 @@ function game() {
     for (var u in kaxardArr) {
         kaxardArr[u].create();
     }
-    io.sockets.emit("uxarkuhuihiuhfihr", matrix)
+    io.sockets.emit("uxarkum em matrix nkari", matrix)
 }
 
 
-setInterval(game, 10)
+setInterval(game, 100)
 
+
+function kheghtel(){
+    xotArr=[];
+    eatArr=[];
+    for(y=0;y<matrix.length;y++){
+        for(x=0;x<matchMedia[y].length;x++){
+            matrix[y][x]=0
+        }
+    }
+}
+
+
+
+
+io.on('connection', function (socket) {
+    
+    socket.on("spani", kheghtel )
+      
+ });
+ 

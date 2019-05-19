@@ -1,4 +1,4 @@
-module.Living = require("./Living")
+var Living = require("./Living")
 module.exports = class Grass extends Living {
     constructor(x, y) {
         super(x, y)

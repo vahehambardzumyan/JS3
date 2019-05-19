@@ -1,4 +1,5 @@
-class Hresh extends Living {
+var Living = require("./Living")
+module.exports = class Hresh extends Living {
     constructor(x, y) {
         super(x, y)
         this.x = x;

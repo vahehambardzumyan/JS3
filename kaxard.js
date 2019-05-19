@@ -1,5 +1,6 @@
-
-class Kaxard  extends Living{
+var Living = require("./Living")
+var Grass = require('./grass');
+module.exports = class Kaxard extends Living {
     constructor(x, y) {
         super(x, y)
         this.x = x;
@@ -40,7 +41,7 @@ class Kaxard  extends Living{
 
     create() {
         var fundCords = this.getDirections(0);
-        var cord = random(fundCords);
+        var cord = fundCords[Math.floor(Math.random()*fundCords.length)];
         if (cord) {
             var x = cord[0];
             var y = cord[1];
