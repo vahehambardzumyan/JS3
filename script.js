@@ -1,16 +1,16 @@
-var side = 15;
+var side = 20;
 var socket = io()
 socket.on("uxarkum em matrix nkari", drawMatrix);
 
 function setup() {
-    createCanvas(50 * side, 50 * side);
+    frameRate(8);
+    createCanvas(40 * side, 40 * side);
     background('#acacac');
 }
+function drawMatrix(matrix) {
 
-function drawMatrix(obj) {
-
-    matrix = obj.m
-    season = obj.s
+    // matrix = obj.m
+    // season = obj.s
 
     background('#acacac');
     for (var i = 0; i < matrix.length; i++) {
@@ -29,14 +29,25 @@ function drawMatrix(obj) {
                 fill("black");
             }
             rect(j * side, i * side, side, side);
-
-
         }
     }
 }
-
 function spanel() {
-    socket.io("spani", 445695963)
+    socket.emit("kill");
 }
-
+function xot() {
+    socket.emit("xot");
+}
+function potorik() {
+    socket.emit("potorik");
+}
+function gishatich() {
+    socket.emit("gishatich");
+}
+function improviz() {
+    socket.emit("improviz");
+}
+function xotaker() {
+    socket.emit("xotaker");
+}
 

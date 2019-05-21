@@ -4,8 +4,8 @@ module.exports = class Hresh extends Living {
         super(x, y)
         this.x = x;
         this.y = y;
-        this.multiply = 0;
-        this.energy = 20;
+        this.multiply = 5;
+        this.energy = 35;
         this.directions = [];
     }
 
