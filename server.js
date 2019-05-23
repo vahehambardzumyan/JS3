@@ -8,7 +8,6 @@ var Kaxard = require('./kaxard');
 var Gishatich = require('./gishatich');
 var Eatgrass = require('./eatgrass');
 var Hresh = require('./Hresh');
-weather = ["Ձմեռ", "Գարուն", "Ամառ", "Աշուն"];
 
 matrix = []
 for (y = 0; y < 40; y++) {
@@ -72,15 +71,22 @@ function createObject() {
     }
 }
 createObject(matrix);
+seasonTime=0;
+
+let obj={
+'matrix':matrix,
+'season':"winter",
+
+}
 
 function game() {
-    // takt++
-    // if(takt<=20){
-    //     eghanak ="amar"
-    // }else if(takt<=40 ){
-    //     eghanak="dzmer"
-    // }else {
-    //     takt=0
+    seasonTime++
+    if(seasonTime>=8){
+        season ="winter"
+    }else if(seasonTime>=16 ){
+        season="summer"
+    }else {
+        seasonTime=0
 
 
 
@@ -100,7 +106,7 @@ function game() {
     for (var u in kaxardArr) {
         kaxardArr[u].create();
     }
-    io.sockets.emit("uxarkum em matrix nkari", matrix)
+    io.sockets.emit("uxarkum em matrix nkari", obj)
 }
 setInterval(game, 1000)
 
@@ -129,13 +135,6 @@ function event1() {
         })
     });
 }
-event1()
-setInterval(event1, 1000)
-
-
-
-
-
 
 
 function event2() {
@@ -153,12 +152,6 @@ function event2() {
         })
     });
 }
-event2(matrix)
-setInterval(event2, 1000)
-
-
-
-
 function event3() {
     io.on('connection', function (socket) {
         socket.on('potorik', function () {
@@ -202,8 +195,6 @@ function event3() {
 
     });
 }
-event3(matrix)
-setInterval(event3, 1000)
 
 
 
@@ -222,9 +213,6 @@ function event4() {
         })
     });
 }
-event4(matrix)
-setInterval(event4, 1000)
-
 
 function event5() {
     io.on('connection', function (socket) {
@@ -241,8 +229,6 @@ function event5() {
         })
     });
 }
-event5(matrix)
-setInterval(event5, 1000)
 
 
 
@@ -260,6 +246,4 @@ function event6() {
 
         })
     });
-}
-event6(matrix)
-setInterval(event6, 1000)
+}}

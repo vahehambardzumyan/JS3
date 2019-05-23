@@ -7,16 +7,22 @@ function setup() {
     createCanvas(40 * side, 40 * side);
     background('#acacac');
 }
-function drawMatrix(matrix) {
+function drawMatrix(obj) {
 
-    // matrix = obj.m
-    // season = obj.s
+    matrix = obj.matrix;
+    s = obj.season
+    document.getElementById('season').innerHTML=s;
 
     background('#acacac');
     for (var i = 0; i < matrix.length; i++) {
         for (var j = 0; j < matrix[i].length; j++) {
             if (matrix[i][j] == 1) {
-                fill("green");
+                if(s=="winter"){
+                    fill("white");
+                }
+                else {
+                    fill("green")
+                }
             } else if (matrix[i][j] == 2) {
                 fill("yellow");
             } else if (matrix[i][j] == 3) {
