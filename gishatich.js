@@ -38,10 +38,8 @@ module.exports = class Gishatich  extends Living{
     }
 
 
-
-
     move() {
-        var fundCords = this.getDirections(0);
+        var fundCords = this.getDirections(2);
         var cord = fundCords[Math.floor(Math.random()*fundCords.length)];
 
         if (cord) {
@@ -55,7 +53,6 @@ module.exports = class Gishatich  extends Living{
             this.y = y;
         }
     }
-
     eat() {
         var fundCords = this.getDirections(2);
         var cord = fundCords[Math.floor(Math.random()*fundCords.length)];
@@ -63,30 +60,29 @@ module.exports = class Gishatich  extends Living{
             var x = cord[0];
             var y = cord[1];
 
+            matrix[y][x] = 3;
+            matrix[this.y][this.x] = 0;
 
-            if (this.energy < 2) {
-                matrix[y][x] = 3;
-                matrix[this.y][this.x] = 0;
-                this.x = x;
-                this.y = y;
-                for (var i in eatArr) {
-                    if (x == eatArr[i].x && y == eatArr[i].y) {
-                        eatArr.splice(i, 1);
-                    }
-                }
-                this.energy += 8;
-            }
+            this.x = x;
+            this.y = y;
 
-            this.energy--;
             this.multiply++;
 
-            if (this.multiply == 5) {
+            this.energy++;
+
+            for (var i in eatArr) {
+                if (x == eatArr[i].x && y == eatArr[i].y) {
+                    eatArr.splice(i, 1);
+                }
+            }
+
+            if (this.multiply != 10) {
                 this.mul()
                 this.multiply = 0;
             }
 
-
         } else {
+
             this.move();
             this.energy--;
             if (this.energy <= 0) {
@@ -94,6 +90,7 @@ module.exports = class Gishatich  extends Living{
             }
         }
     }
+
 
     mul() {
         var fundCords = this.getDirections(0);

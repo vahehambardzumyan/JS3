@@ -37,8 +37,6 @@ module.exports = class Eatgrass  extends Living{
         return found;
     }
 
-
-
     move() {
         var fundCords = this.getDirections(0);
         var cord = fundCords[Math.floor(Math.random()*fundCords.length)];
@@ -55,10 +53,9 @@ module.exports = class Eatgrass  extends Living{
         }
     }
 
-
     eat() {
         var fundCords = this.getDirections(1);
-        var cord = fundCords[Math.floor(Math.random()*fundCords.length)]
+        var cord = fundCords[Math.floor(Math.random()*fundCords.length)];
         if (cord) {
             var x = cord[0];
             var y = cord[1];
@@ -66,10 +63,8 @@ module.exports = class Eatgrass  extends Living{
             matrix[y][x] = 2;
             matrix[this.y][this.x] = 0;
 
-
             this.x = x;
             this.y = y;
-
 
             this.multiply++;
 
@@ -81,11 +76,10 @@ module.exports = class Eatgrass  extends Living{
                 }
             }
 
-            if (this.multiply == 10) {
+            if (this.multiply != 10) {
                 this.mul()
                 this.multiply = 0;
             }
-
 
         } else {
 
@@ -100,7 +94,6 @@ module.exports = class Eatgrass  extends Living{
     mul() {
         var fundCords = this.getDirections(0);
         var cord = fundCords[Math.floor(Math.random()*fundCords.length)];
-
         if (cord) {
             var x = cord[0];
             var y = cord[1];

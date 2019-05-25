@@ -5,7 +5,7 @@ module.exports = class Hresh extends Living {
         this.x = x;
         this.y = y;
         this.multiply = 5;
-        this.energy = 35;
+        this.energy = 15;
         this.directions = [];
     }
 

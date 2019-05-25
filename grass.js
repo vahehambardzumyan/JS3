@@ -2,8 +2,6 @@ var Living = require("./Living")
 module.exports = class Grass extends Living {
     constructor(x, y) {
         super(x, y)
-        // this.x = x;
-        // this.y = y;
         this.directions = [];
 
 

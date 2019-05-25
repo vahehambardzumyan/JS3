@@ -8,31 +8,26 @@ var Kaxard = require('./kaxard');
 var Gishatich = require('./gishatich');
 var Eatgrass = require('./eatgrass');
 var Hresh = require('./Hresh');
+var fs = require("fs")
 
 matrix = []
 for (y = 0; y < 40; y++) {
     matrix.push([])
     for (x = 0; x < 40; x++) {
         var p = Math.round(Math.random() * 100);
-        if (p < 0) {
+        if (p < 15) {
             matrix[y].push(1);
-        }
-        else if (p >= 0 && p < 50) {
+        } else if (p >= 15 && p < 45) {
             matrix[y].push(0);
-        }
-        else if (p >= 50 && p < 70) {
+        } else if (p >= 45 && p < 65) {
             matrix[y].push(2);
-        }
-        else if (p >= 70 && p < 90) {
+        } else if (p >= 65 && p < 90) {
             matrix[y].push(3);
-        }
-        else if (p >= 90 && p < 98) {
+        } else if (p >= 90 && p < 98) {
             matrix[y].push(4);
-        }
-        else if (p >= 98 && p < 100) {
+        } else if (p >= 98 && p < 100) {
             matrix[y].push(5);
         }
-
     }
 }
 
@@ -71,23 +66,28 @@ function createObject() {
     }
 }
 createObject(matrix);
-seasonTime=0;
+seasonTime = 0;
 
-let obj={
-'matrix':matrix,
-'season':"winter",
+let obj = {
+    'matrix': matrix,
+    'season': "winter",
 
 }
 
+
 function game() {
     seasonTime++
-    if(seasonTime>=8){
-        season ="winter"
-    }else if(seasonTime>=16 ){
-        season="summer"
-    }else {
-        seasonTime=0
-
+    if (seasonTime <= 6) {
+        obj.season = "winter"
+    } else if (seasonTime <= 12) {
+        obj.season = "spring"
+    } else if (seasonTime <= 20) {
+        obj.season = "summer"
+    } else if (seasonTime <= 26) {
+        obj.season = "autumn"
+    } else {
+        seasonTime = 0
+    }
 
 
 
@@ -136,6 +136,9 @@ function event1() {
     });
 }
 
+event1(matrix)
+setInterval(event1, 500)
+
 
 function event2() {
     io.on('connection', function (socket) {
@@ -152,6 +155,9 @@ function event2() {
         })
     });
 }
+
+event2(matrix)
+setInterval(event2, 700)
 function event3() {
     io.on('connection', function (socket) {
         socket.on('potorik', function () {
@@ -196,6 +202,9 @@ function event3() {
     });
 }
 
+event3(matrix)
+setInterval(event3, 700)
+
 
 
 function event4() {
@@ -214,6 +223,9 @@ function event4() {
     });
 }
 
+event4(matrix)
+setInterval(event4, 700)
+
 function event5() {
     io.on('connection', function (socket) {
         socket.on("improviz", function () {
@@ -230,6 +242,8 @@ function event5() {
     });
 }
 
+event5(matrix)
+setInterval(event5, 700)
 
 
 function event6() {
@@ -246,4 +260,22 @@ function event6() {
 
         })
     });
-}}
+}
+
+event6(matrix)
+setInterval(event6, 700)
+
+
+
+var statistics = {};
+
+setInterval(function () {
+    statistics.grass = xotArr.length;
+    statistics.Eatgrass = eatArr.length;
+    statistics.Gishatich = gishatichArr.length;
+    statistics.Hresh = hreshArr.length;
+    statistics.Kaxard = kaxardArr.length;
+    fs.writeFile("statistics.json", JSON.stringify(statistics), function () {
+        console.log("send")
+    })
+}, 1000)
